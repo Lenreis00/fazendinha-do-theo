@@ -24,7 +24,7 @@
   --gutter:10px; --top:10px; --bottom:10px;
   /* altura reservada para texto + botões abaixo da foto (define a largura máxima do cartão) */
   --below:316px;
-  /* espaço verde abaixo dos botões; em navegadores modernos soma a área da barra do navegador */
+  /* espaço verde abaixo dos botões; no Android soma a área da barra do navegador */
   --extra:26px;
   color-scheme:light;
 }
@@ -181,6 +181,14 @@ body{
   .btns{grid-column:2;padding:8px 14px calc(10px + var(--extra))}
   .btn{font-size:clamp(11px,1.9vw,16px)}
   .btn small{font-size:clamp(9px,1.4vw,12px)}
+}
+
+/* iPhone (Safari e navegadores do iOS): usa só a área visível, sem a faixa extra embaixo */
+@supports (-webkit-touch-callout:none){
+  body{height:100svh}
+  :root{--extra:26px}
+  @media (max-height:620px){ :root{--extra:4px} }
+  @media (orientation:landscape) and (max-height:540px){ :root{--extra:8px} }
 }
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
