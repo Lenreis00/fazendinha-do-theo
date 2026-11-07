@@ -60,7 +60,8 @@ body{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px
 .board b{display:block;font-family:var(--display);font-weight:400;font-size:22px;color:var(--gold);text-shadow:2px 2px 0 var(--wood2)}
 @keyframes sway{0%,100%{transform:translateX(-50%) rotate(-3deg)}50%{transform:translateX(-50%) rotate(3deg)}}
 .gate.open .hint{opacity:0;transition:opacity .3s}
-.card.fechado{max-height:calc(100vh - 40px);max-height:calc(100svh - 40px)}
+.card.fechado{box-sizing:border-box;max-height:calc(100vh - 44px);max-height:calc(100svh - 44px)}
+body:has(.card.fechado){overflow:hidden}
 @keyframes pulse{50%{transform:translate(-50%,-50%) scale(1.06)}}
 /* Painel da lista */
 .sheet{position:fixed;inset:0;z-index:20;background:rgba(62,36,20,.55);display:flex;align-items:flex-end;justify-content:center;padding:0 max(16px,env(safe-area-inset-right,0px)) env(safe-area-inset-bottom,0px) max(16px,env(safe-area-inset-left,0px))}
