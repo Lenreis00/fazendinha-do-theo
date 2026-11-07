@@ -24,18 +24,17 @@
   --gutter:10px; --top:10px; --bottom:10px;
   /* altura reservada para texto + botões abaixo da foto (define a largura máxima do cartão) */
   --below:316px;
-  /* espaço verde abaixo dos botões; no Android soma a área da barra do navegador */
+  /* espaço verde abaixo dos botões */
   --extra:26px;
   color-scheme:light;
 }
-@supports (height:100svh){ :root{ --extra:calc(26px + 100lvh - 100svh) } }
 
 /* ---------- Base ---------- */
 *,*::before,*::after{box-sizing:border-box}
 html,body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);-webkit-text-size-adjust:100%}
 html{height:100%;overflow:hidden}
 body{
-  height:100%; height:100vh; height:100lvh;
+  height:100%; height:100vh; height:100svh;
   padding:var(--top) max(var(--gutter),env(safe-area-inset-right,0px)) calc(var(--bottom) + env(safe-area-inset-bottom,0px)) max(var(--gutter),env(safe-area-inset-left,0px));
   overflow:hidden; -webkit-tap-highlight-color:transparent;
 }
@@ -161,7 +160,6 @@ body{
 /* Telas baixas (celular pequeno ou com barras grandes) */
 @media (max-height:620px){
   :root{--top:6px;--below:262px;--extra:4px}
-  @supports (height:100svh){ :root{ --extra:calc(4px + 100lvh - 100svh) } }
   .msg p{line-height:1.25}
 }
 /* Telas muito estreitas (ex.: Galaxy Fold fechado) */
@@ -181,14 +179,6 @@ body{
   .btns{grid-column:2;padding:8px 14px calc(10px + var(--extra))}
   .btn{font-size:clamp(11px,1.9vw,16px)}
   .btn small{font-size:clamp(9px,1.4vw,12px)}
-}
-
-/* iPhone (Safari e navegadores do iOS): usa só a área visível, sem a faixa extra embaixo */
-@supports (-webkit-touch-callout:none){
-  body{height:100svh}
-  :root{--extra:26px}
-  @media (max-height:620px){ :root{--extra:4px} }
-  @media (orientation:landscape) and (max-height:540px){ :root{--extra:8px} }
 }
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
